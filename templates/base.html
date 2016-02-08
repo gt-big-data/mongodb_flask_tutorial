@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="http://bootswatch.com/cosmo/bootstrap.min.css" />
+    {% block head %}
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="container-fluid">{% block content %}{% endblock %}</div>
+
+</body>
+</html>
