@@ -14,34 +14,23 @@ def say_hello(name):
 
 @app.route('/')
 def index():
-    sources = db.qdoc.distinct('source')
-    sample = random.sample(sources, 10)
-    return flask.render_template('sources.html', sources=sample)
+    # display 10 random sources
+    return
 
 @app.route('/articles/<string:source>')
 def list_articles(source):
     # return articles that match the source
-    articles = db.qdoc.find({'source': source},
-        projection={'_id': 1, 'title': 1}, limit=10)
-    return flask.render_template('article_list.html',
-        source=source, articles=articles)
+    return
 
 @app.route('/article/<string:_id>')
 def get_article(_id):
     # return the article that has the given id
-    article = db.qdoc.find_one({'_id': bson.objectid.ObjectId(_id)})
-    return flask.render_template('article.html', article=article)
-
+    return
 @app.route('/chartdata')
 def sources_chart_data():
     # use the mongodb aggregation framework to return the top 20 sources
     # with the most articles.
-    group = { '$group': {'_id': '$source', 'total': {'$sum': 1}}}
-    sort = {'$sort': {'total': -1}}
-    limit = {'$limit': 20}
-    pipeline = [group, sort, limit]
-    result = list(db.qdoc.aggregate(pipeline))
-    return flask.jsonify(data=result)
+    return
 
 
 @app.route('/chart')
